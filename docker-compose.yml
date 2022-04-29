@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+
+  amiws:
+    image: qrotux/amiws-board:latest
+    build: .
+    environment:
+      WS_HOST: "ws://localhost:8001"
+#    volumes:
+#      - ./amiws-config.yaml:/data/amiws/config.yaml
+    ports:
+      - 8000:80
+      - 8001:8000

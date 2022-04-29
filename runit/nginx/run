@@ -1,0 +1,9 @@
+#!/bin/sh
+
+exec 2>&1
+
+mkdir -p /run/nginx
+
+sed -i "s~<body>~<body><script type=text\/javascript>window.wsAMIWSHost=\'${WS_HOST}\'<\/script>~g" /var/www/html/index.html
+
+exec nginx -g 'daemon off;'

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+main() {
+    export > /.env
+
+    trap onterm SIGTERM SIGINT
+
+    echo "Starting runit"
+    runsvdir-start &
+    wait "$!"
+}
+
+onterm() {
+    echo "Exiting..."
+    pkill -SIGHUP runsvdir-start
+    exit $?
+}
+
+main "$@"
